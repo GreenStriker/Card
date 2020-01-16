@@ -16,5 +16,22 @@ namespace JoinstarCard
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ReadQRForm var = new ReadQRForm();
+            var.Visible = true;
+            this.Visible = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+       
+        }
     }
 }

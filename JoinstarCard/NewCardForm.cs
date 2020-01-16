@@ -12,14 +12,47 @@ namespace JoinstarCard
 {
     public partial class NewCardForm : Form
     {
+
+     private   string cardNo = "";
+        public NewCardForm(string cad)
+        {
+            InitializeComponent();
+
+            this.cardNo = cad;
+
+            this.label6.Text = this.cardNo;
+        }
+
         public NewCardForm()
         {
             InitializeComponent();
+
         }
+
+
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void NewCardForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+            CaptureImageForm cap = new CaptureImageForm(this);
+
+            cap.Visible = true;
+
+            this.Visible = false;
         }
     }
 }

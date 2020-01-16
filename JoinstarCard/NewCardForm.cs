@@ -23,6 +23,18 @@ namespace JoinstarCard
             this.label6.Text = this.cardNo;
         }
 
+        public NewCardForm(string cardNo, string email, string phone, string name,Image im)
+        {
+            InitializeComponent();
+
+            textBox1.Text = name;
+            textBox2.Text = phone;
+            textBox3.Text = email;
+            label6.Text = cardNo;
+            pictureBox1.Image = im;
+        }
+
+
         public NewCardForm()
         {
             InitializeComponent();
@@ -48,7 +60,7 @@ namespace JoinstarCard
 
         private void label5_Click(object sender, EventArgs e)
         {
-            CaptureImageForm cap = new CaptureImageForm(this);
+            CaptureImageForm cap = new CaptureImageForm(label6.Text,textBox3.Text,textBox2.Text,textBox1.Text);
 
             cap.Visible = true;
 

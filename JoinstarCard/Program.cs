@@ -16,7 +16,7 @@ namespace JoinstarCard
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CaptureImageForm(new NewCardForm()));
+            Application.Run(new MenuForm());
         }
     }
 }

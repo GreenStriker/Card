@@ -16,15 +16,22 @@ namespace JoinstarCard
 {
     public partial class CaptureImageForm : Form
     {
-        private NewCardForm nw = new NewCardForm();
+        private string name;
+        private Image img;
+        private string phone;
+        private string email;
+        private string cardNo;
 
-        public CaptureImageForm(NewCardForm now)
+        public CaptureImageForm(string cardNo, string email, string phone ,string name)
         {
             InitializeComponent();
 
-            this.nw = now;
+            this.name = name;
+            this.phone = phone;
+            this.email = email;
+            this.cardNo = cardNo;
 
-            
+
         }
         FilterInfoCollection filterInfoCollection;
         VideoCaptureDevice captureDevice;
@@ -99,6 +106,13 @@ namespace JoinstarCard
 
             pictureBox2.Image = (Image)crpImg;
             pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+
+
+            NewCardForm nowIsTheTime = new NewCardForm(cardNo,email,phone,name,pictureBox2.Image);
+
+            nowIsTheTime.Visible = true;
+            this.Visible = false;
+
           
            
         }

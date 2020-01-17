@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using JoinstarCard.Model;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
-
 namespace JoinstarCard
 {
     public partial class NewCardForm : Form
@@ -65,6 +60,25 @@ namespace JoinstarCard
             cap.Visible = true;
 
             this.Visible = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            NewCard newCard = new NewCard();
+            newCard.Name = textBox1.Text;
+            newCard.Phone=textBox2.Text ;
+            newCard.Email= textBox3.Text;
+            newCard.MemberImage=ImageToByteArray(pictureBox1.Image);
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(newCard);
+            Console.WriteLine(json);
+            Console.ReadLine();
+            MessageBox.Show("Json Convert Done! See into Console");
+        }
+        public static byte[] ImageToByteArray(Image x)
+        {
+            ImageConverter _imageConverter = new ImageConverter();
+            byte[] xByte = (byte[])_imageConverter.ConvertTo(x, typeof(byte[]));
+            return xByte;
         }
     }
 }

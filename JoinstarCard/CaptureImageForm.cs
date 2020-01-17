@@ -115,6 +115,8 @@ namespace JoinstarCard
                 nowIsTheTime.Visible = true;
                 this.Visible = false;
 
+
+
             }
             catch(Exception e1 )
             {

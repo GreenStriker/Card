@@ -63,26 +63,35 @@ namespace JoinstarCard
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(pictureBox1.Image !=null)
+            try
             {
-
-                BarcodeReader barcodeReader = new BarcodeReader();
-                Result result = barcodeReader.Decode((Bitmap)pictureBox1.Image);
-                if(result != null)
+                if (pictureBox1.Image != null)
                 {
 
-
-                    NewCardForm nw = new NewCardForm(result.ToString());
-
-                    nw.Visible = true;
-                    this.Visible = false;
-                   // MessageBox.Show(""+result.ToString());
-                    timer1.Stop();
-                    if (captureDevice.IsRunning)
+                    BarcodeReader barcodeReader = new BarcodeReader();
+                    Result result = barcodeReader.Decode((Bitmap)pictureBox1.Image);
+                    if (result != null)
                     {
-                        captureDevice.Stop();
+
+
+                        NewCardForm nw = new NewCardForm(result.ToString());
+
+                        nw.Visible = true;
+                        this.Visible = false;
+                        // MessageBox.Show(""+result.ToString());
+                        timer1.Stop();
+                        if (captureDevice.IsRunning)
+                        {
+                            captureDevice.Stop();
+                        }
                     }
                 }
+            }
+
+            catch(Exception e1)
+            {
+                Application.Restart();
+
             }
         }
     }

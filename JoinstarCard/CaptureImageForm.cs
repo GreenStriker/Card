@@ -86,34 +86,48 @@ namespace JoinstarCard
         private void button3_Click(object sender, EventArgs e)
         {
 
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            //  label2.Text = "Dimensions :" + rectW + "," + rectH;
-            Cursor = Cursors.Default;
-            //Now we will draw the cropped image into pictureBox2
-            Bitmap bmp2 = new Bitmap(pictureBox2.Width, pictureBox2.Height);
-            pictureBox2.DrawToBitmap(bmp2, pictureBox2.ClientRectangle);
-
-            Bitmap crpImg = new Bitmap(rectW, rectH);
-
-            for (int i = 0; i < rectW; i++)
+            try
             {
-                for (int y = 0; y < rectH; y++)
+                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+                //  label2.Text = "Dimensions :" + rectW + "," + rectH;
+                Cursor = Cursors.Default;
+                //Now we will draw the cropped image into pictureBox2
+                Bitmap bmp2 = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+                pictureBox2.DrawToBitmap(bmp2, pictureBox2.ClientRectangle);
+
+                Bitmap crpImg = new Bitmap(rectW, rectH);
+
+                for (int i = 0; i < rectW; i++)
                 {
-                    Color pxlclr = bmp2.GetPixel(crpX + i, crpY + y);
-                    crpImg.SetPixel(i, y, pxlclr);
+                    for (int y = 0; y < rectH; y++)
+                    {
+                        Color pxlclr = bmp2.GetPixel(crpX + i, crpY + y);
+                        crpImg.SetPixel(i, y, pxlclr);
+                    }
                 }
+
+                pictureBox2.Image = (Image)crpImg;
+                pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+
+
+                NewCardForm nowIsTheTime = new NewCardForm(cardNo, email, phone, name, pictureBox2.Image);
+                captureDevice.Stop();
+                nowIsTheTime.Visible = true;
+                this.Visible = false;
+
+
+
             }
+            catch(Exception e1 )
+            {
 
-            pictureBox2.Image = (Image)crpImg;
-            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+                NewCardForm nowIsTheTime = new NewCardForm(cardNo, email, phone, name, pictureBox2.Image);
+                captureDevice.Stop();
+                nowIsTheTime.Visible = true;
+                this.Visible = false;
 
 
-            NewCardForm nowIsTheTime = new NewCardForm(cardNo,email,phone,name,pictureBox2.Image);
-
-            nowIsTheTime.Visible = true;
-            this.Visible = false;
-
-          
+            }
            
         }
 

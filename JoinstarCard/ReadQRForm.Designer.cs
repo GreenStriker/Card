@@ -42,19 +42,18 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(156, 58);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(208, 71);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(236, 20);
+            this.label4.Size = new System.Drawing.Size(294, 25);
             this.label4.TabIndex = 37;
             this.label4.Text = "Please Present Card QR Code...";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(120, 94);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(157, 108);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(283, 191);
+            this.pictureBox1.Size = new System.Drawing.Size(377, 235);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 38;
             this.pictureBox1.TabStop = false;
@@ -62,10 +61,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(73, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(97, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 40;
             this.label1.Text = "Cameras:\r\n";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -74,16 +72,18 @@
             // 
             this.cboDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDevice.FormattingEnabled = true;
-            this.cboDevice.Location = new System.Drawing.Point(129, 15);
+            this.cboDevice.Location = new System.Drawing.Point(172, 18);
+            this.cboDevice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboDevice.Name = "cboDevice";
-            this.cboDevice.Size = new System.Drawing.Size(221, 21);
+            this.cboDevice.Size = new System.Drawing.Size(293, 24);
             this.cboDevice.TabIndex = 41;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(370, 12);
+            this.button1.Location = new System.Drawing.Point(493, 15);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 42;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
@@ -95,15 +95,15 @@
             // 
             // ReadQRForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 344);
+            this.ClientSize = new System.Drawing.Size(711, 423);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cboDevice);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label4);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ReadQRForm";
             this.Text = "ReadQRForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReadQRForm_FormClosing);

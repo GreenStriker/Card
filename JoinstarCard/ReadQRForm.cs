@@ -90,6 +90,10 @@ namespace JoinstarCard
 
             catch(Exception e1)
             {
+                if (captureDevice.IsRunning)
+                {
+                    captureDevice.Stop();
+                }
                 Application.Restart();
 
             }

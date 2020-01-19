@@ -12,7 +12,7 @@ namespace JoinstarCard.Model
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string IsAgree { get; set; }
+        public bool IsAgree { get; set; }
         public  byte[] MemberImage { get; set; }
 
     }

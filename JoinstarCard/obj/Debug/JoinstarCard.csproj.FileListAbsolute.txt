@@ -90,3 +90,8 @@ D:\Project\test\CARD\Card\JoinstarCard\obj\Debug\JoinstarCard.csproj.GenerateRes
 D:\Project\test\CARD\Card\JoinstarCard\obj\Debug\JoinstarCard.csproj.CopyComplete
 D:\Project\test\CARD\Card\JoinstarCard\obj\Debug\JoinstarCard.exe
 D:\Project\test\CARD\Card\JoinstarCard\obj\Debug\JoinstarCard.pdb
+E:\personal\card\Card\JoinstarCard\bin\Debug\Newtonsoft.Json.dll
+E:\personal\card\Card\JoinstarCard\bin\Debug\System.Net.Http.Formatting.dll
+E:\personal\card\Card\JoinstarCard\bin\Debug\WebApiContrib.Formatting.JavaScriptSerializer.dll
+E:\personal\card\Card\JoinstarCard\bin\Debug\Newtonsoft.Json.xml
+E:\personal\card\Card\JoinstarCard\bin\Debug\System.Net.Http.Formatting.xml

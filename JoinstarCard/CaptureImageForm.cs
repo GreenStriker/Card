@@ -44,9 +44,14 @@ namespace JoinstarCard
             pictureBox2.MouseMove += new MouseEventHandler(pictureBox2_MouseMove);
 
             pictureBox2.MouseEnter += new EventHandler(pictureBox2_MouseEnter);
+            //int y = (this.pictureBox2.Size.Width * 3) / 4;
+            //this.pictureBox2.Size = new System.Drawing.Size(this.pictureBox2.Size.Width, y);
             Controls.Add(pictureBox2);
 
+            // this.pictureBox2.Size.Height = (this.pictureBox2.Size.Width * 0.75);
 
+
+         
 
         }
 
@@ -73,12 +78,16 @@ namespace JoinstarCard
 
         private void captureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
+       //     pictureBox1.Image.Dispose();
+
             pictureBox1.Image = (Bitmap)eventArgs.Frame.Clone();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             pictureBox2.Image = (Bitmap)pictureBox1.Image;
+            captureDevice.Stop();
+
         }
         public Pen crpPen = new Pen(Color.White);
         int crpX, crpY, rectW, rectH;

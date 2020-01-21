@@ -26,6 +26,7 @@ namespace JoinstarCard
             textBox2.Text = phone;
             textBox3.Text = email;
             label6.Text = cardNo;
+            
             pictureBox1.Image = im;
         }
 

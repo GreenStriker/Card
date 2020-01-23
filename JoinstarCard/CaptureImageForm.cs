@@ -88,7 +88,7 @@ namespace JoinstarCard
 
         }
         public Pen crpPen = new Pen(Color.White);
-        int crpX, crpY, rectW, rectH,move = 0;
+        int crpX, crpY, rectW, rectH,move = 0, dragFlag=0;
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -145,9 +145,9 @@ namespace JoinstarCard
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
 
-                if(move == 1)
+                if(dragFlag == 2)
                 {
-                    move = 0;
+                    move = 1;
                 }
                 else { 
                 Cursor = Cursors.Cross;
@@ -156,6 +156,8 @@ namespace JoinstarCard
                 //this is where we firstly click on image
                 crpX = e.X;
                 crpY = e.Y;
+
+                    dragFlag = 1;
                 }
             }
 
@@ -167,9 +169,19 @@ namespace JoinstarCard
 
         }
 
+        private void pictureBox2_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                //MessageBox.Show("Sdsd");
+
+                dragFlag = 2;
+            }
+        }
         private void button4_Click(object sender, EventArgs e)
         {
-            move = 1;
+            move = 0;
+            dragFlag = 0;
         }
 
         private void pictureBox2_MouseEnter(object sender, EventArgs e)
@@ -183,36 +195,38 @@ namespace JoinstarCard
             base.OnMouseMove(e);
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                pictureBox2.Refresh();
-                //set width and height for crop rectangle.
-                rectH = e.Y - crpY;
-                //rectW = e.X - crpX;
-                rectW = (rectH*3)/4;
-                
-                Graphics g = pictureBox2.CreateGraphics();
-                g.DrawRectangle(crpPen, crpX, crpY, rectW, rectH);
-                g.Dispose();
+                if (move == 1)
+                {
+                    Cursor = Cursors.Cross;
+                    crpPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+                    // set initial x,y co ordinates for crop rectangle
+                    //this is where we firstly click on image
+                    crpX = e.X;
+                    crpY = e.Y;
+
+                    pictureBox2.Refresh();
+                    crpX = e.X;
+                    crpY = e.Y;
+
+                    Graphics g = pictureBox2.CreateGraphics();
+                    g.DrawRectangle(crpPen, crpX, crpY, rectW, rectH);
+                    g.Dispose();
+
+
+
+                }
+                else { pictureBox2.Refresh();
+                    //set width and height for crop rectangle.
+                    rectH = e.Y - crpY;
+                    //rectW = e.X - crpX;
+                    rectW = (rectH * 3) / 4;
+
+                    Graphics g = pictureBox2.CreateGraphics();
+                    g.DrawRectangle(crpPen, crpX, crpY, rectW, rectH);
+                    g.Dispose();
+                }
             }
-            else if(move==1)
-            {
-                Cursor = Cursors.Cross;
-                crpPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-                // set initial x,y co ordinates for crop rectangle
-                //this is where we firstly click on image
-                crpX = e.X;
-                crpY = e.Y;
-
-                pictureBox2.Refresh();
-                crpX =  e.X;
-                crpY = e.Y;
-
-                Graphics g = pictureBox2.CreateGraphics();
-                g.DrawRectangle(crpPen, crpX, crpY, rectW, rectH);
-                g.Dispose();
-
-
-
-            }
+           
 
 
         }

@@ -39,27 +39,28 @@ namespace JoinstarCard
 
         private void button2_Click(object sender, EventArgs e)
         {
-            pictureBox2.MouseDown += new MouseEventHandler(pictureBox2_MouseDown);
+            if (captureDevice.IsRunning)
+            {
+                captureDevice.Stop();
+            }//pictureBox2.MouseDown += new MouseEventHandler(pictureBox2_MouseDown);
 
-            pictureBox2.MouseMove += new MouseEventHandler(pictureBox2_MouseMove);
+            //pictureBox2.MouseMove += new MouseEventHandler(pictureBox2_MouseMove);
 
-            pictureBox2.MouseEnter += new EventHandler(pictureBox2_MouseEnter);
-            //int y = (this.pictureBox2.Size.Width * 3) / 4;
-            //this.pictureBox2.Size = new System.Drawing.Size(this.pictureBox2.Size.Width, y);
-            Controls.Add(pictureBox2);
+            //pictureBox2.MouseEnter += new EventHandler(pictureBox2_MouseEnter);
+            ////int y = (this.pictureBox2.Size.Width * 3) / 4;
+            ////this.pictureBox2.Size = new System.Drawing.Size(this.pictureBox2.Size.Width, y);
+            //Controls.Add(pictureBox2);
 
-            // this.pictureBox2.Size.Height = (this.pictureBox2.Size.Width * 0.75);
+            //// this.pictureBox2.Size.Height = (this.pictureBox2.Size.Width * 0.75);
 
+            Form1 fm = new Form1(cardNo, email, phone, name, pictureBox1.Image);
 
-         
-
+            fm.Visible = true;
+            this.Visible = false;
         }
 
-        
-
-        private void CaptureImageForm_Load(object sender, EventArgs e)
+        public void start()
         {
-
             filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             foreach (FilterInfo filterInfo in filterInfoCollection)
             {
@@ -71,6 +72,12 @@ namespace JoinstarCard
             captureDevice = new VideoCaptureDevice(filterInfoCollection[comboBox1.SelectedIndex].MonikerString);
             captureDevice.NewFrame += captureDevice_NewFrame;
             captureDevice.Start();
+        }
+
+        private void CaptureImageForm_Load(object sender, EventArgs e)
+        {
+
+            start();
 
         }
 
@@ -83,158 +90,164 @@ namespace JoinstarCard
 
         private void button1_Click(object sender, EventArgs e)
         {
-            pictureBox2.Image = (Bitmap)pictureBox1.Image;
+            //pictureBox2.Image = (Bitmap)pictureBox1.Image;
             captureDevice.Stop();
 
         }
-        public Pen crpPen = new Pen(Color.White);
-        int crpX, crpY, rectW, rectH,move = 0, dragFlag=0;
 
         private void button3_Click(object sender, EventArgs e)
         {
-
-            try
-            {
-                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-                //  label2.Text = "Dimensions :" + rectW + "," + rectH;
-                Cursor = Cursors.Default;
-                //Now we will draw the cropped image into pictureBox2
-                Bitmap bmp2 = new Bitmap(pictureBox2.Width, pictureBox2.Height);
-                pictureBox2.DrawToBitmap(bmp2, pictureBox2.ClientRectangle);
-
-                Bitmap crpImg = new Bitmap(rectW, rectH);
-
-                for (int i = 0; i < rectW; i++)
-                {
-                    for (int y = 0; y < rectH; y++)
-                    {
-                        Color pxlclr = bmp2.GetPixel(crpX + i, crpY + y);
-                        crpImg.SetPixel(i, y, pxlclr);
-                    }
-                }
-
-                pictureBox2.Image = (Image)crpImg;
-                pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
-
-
-                NewCardForm nowIsTheTime = new NewCardForm(cardNo, email, phone, name, pictureBox2.Image);
-                captureDevice.Stop();
-                nowIsTheTime.Visible = true;
-                this.Visible = false;
-
-
-
-            }
-            catch(Exception e1 )
-            {
-
-                NewCardForm nowIsTheTime = new NewCardForm(cardNo, email, phone, name, pictureBox2.Image);
-                captureDevice.Stop();
-                nowIsTheTime.Visible = true;
-                this.Visible = false;
-
-
-            }
-           
-        }
-
-        private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
-        {
-            base.OnMouseDown(e);
-
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-
-                if(dragFlag == 2)
-                {
-                    move = 1;
-                }
-                else { 
-                Cursor = Cursors.Cross;
-                crpPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-                // set initial x,y co ordinates for crop rectangle
-                //this is where we firstly click on image
-                crpX = e.X;
-                crpY = e.Y;
-
-                    dragFlag = 1;
-                }
-            }
-
-          
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
+            start();
 
         }
+        //public Pen crpPen = new Pen(Color.White);
+        //int crpX, crpY, rectW, rectH,move = 0, dragFlag=0;
 
-        private void pictureBox2_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                //MessageBox.Show("Sdsd");
+        //private void button3_Click(object sender, EventArgs e)
+        //{
 
-                dragFlag = 2;
-            }
-        }
-        private void button4_Click(object sender, EventArgs e)
-        {
-            move = 0;
-            dragFlag = 0;
-        }
+        //    try
+        //    {
+        //        pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        //  label2.Text = "Dimensions :" + rectW + "," + rectH;
+        //        Cursor = Cursors.Default;
+        //        //Now we will draw the cropped image into pictureBox2
+        //        Bitmap bmp2 = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+        //        pictureBox2.DrawToBitmap(bmp2, pictureBox2.ClientRectangle);
 
-        private void pictureBox2_MouseEnter(object sender, EventArgs e)
-        {
-            base.OnMouseEnter(e);
-            Cursor = Cursors.Cross;
-        }
+        //        Bitmap crpImg = new Bitmap(rectW, rectH);
 
-        private void pictureBox2_MouseMove(object sender, MouseEventArgs e)
-        {
-            base.OnMouseMove(e);
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                if (move == 1)
-                {
-                    Cursor = Cursors.Cross;
-                    crpPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-                    // set initial x,y co ordinates for crop rectangle
-                    //this is where we firstly click on image
-                    crpX = e.X;
-                    crpY = e.Y;
+        //        for (int i = 0; i < rectW; i++)
+        //        {
+        //            for (int y = 0; y < rectH; y++)
+        //            {
+        //                Color pxlclr = bmp2.GetPixel(crpX + i, crpY + y);
+        //                crpImg.SetPixel(i, y, pxlclr);
+        //            }
+        //        }
 
-                    pictureBox2.Refresh();
-                    crpX = e.X;
-                    crpY = e.Y;
+        //        pictureBox2.Image = (Image)crpImg;
+        //        pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
 
-                    Graphics g = pictureBox2.CreateGraphics();
-                    g.DrawRectangle(crpPen, crpX, crpY, rectW, rectH);
-                    g.Dispose();
+
+        //        NewCardForm nowIsTheTime = new NewCardForm(cardNo, email, phone, name, pictureBox2.Image);
+        //        captureDevice.Stop();
+        //        nowIsTheTime.Visible = true;
+        //        this.Visible = false;
 
 
 
-                }
-                else { pictureBox2.Refresh();
-                    //set width and height for crop rectangle.
-                    rectH = e.Y - crpY;
-                    //rectW = e.X - crpX;
-                    rectW = (rectH * 3) / 4;
+        //    }
+        //    catch(Exception e1 )
+        //    {
 
-                    Graphics g = pictureBox2.CreateGraphics();
-                    g.DrawRectangle(crpPen, crpX, crpY, rectW, rectH);
-                    g.Dispose();
-                }
-            }
-           
+        //        NewCardForm nowIsTheTime = new NewCardForm(cardNo, email, phone, name, pictureBox2.Image);
+        //        captureDevice.Stop();
+        //        nowIsTheTime.Visible = true;
+        //        this.Visible = false;
 
 
-        }
+        //    }
 
-        protected override void OnMouseEnter(EventArgs e)
-        {
-            base.OnMouseEnter(e);
-            Cursor = Cursors.Default;
-        }
+        //}
+
+        //private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    base.OnMouseDown(e);
+
+        //    if (e.Button == System.Windows.Forms.MouseButtons.Left)
+        //    {
+
+        //        if(dragFlag == 2)
+        //        {
+        //            move = 1;
+        //        }
+        //        else { 
+        //        Cursor = Cursors.Cross;
+        //        crpPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+        //        // set initial x,y co ordinates for crop rectangle
+        //        //this is where we firstly click on image
+        //        crpX = e.X;
+        //        crpY = e.Y;
+
+        //            dragFlag = 1;
+        //        }
+        //    }
+
+
+        //}
+
+        //private void pictureBox2_Click(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void pictureBox2_MouseUp(object sender, MouseEventArgs e)
+        //{
+        //    if (e.Button == System.Windows.Forms.MouseButtons.Left)
+        //    {
+        //        //MessageBox.Show("Sdsd");
+
+        //        dragFlag = 2;
+        //    }
+        //}
+        //private void button4_Click(object sender, EventArgs e)
+        //{
+        //    move = 0;
+        //    dragFlag = 0;
+        //}
+
+        //private void pictureBox2_MouseEnter(object sender, EventArgs e)
+        //{
+        //    base.OnMouseEnter(e);
+        //    Cursor = Cursors.Cross;
+        //}
+
+        //private void pictureBox2_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    base.OnMouseMove(e);
+        //    if (e.Button == System.Windows.Forms.MouseButtons.Left)
+        //    {
+        //        if (move == 1)
+        //        {
+        //            Cursor = Cursors.Cross;
+        //            crpPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+        //            // set initial x,y co ordinates for crop rectangle
+        //            //this is where we firstly click on image
+        //            crpX = e.X;
+        //            crpY = e.Y;
+
+        //            pictureBox2.Refresh();
+        //            crpX = e.X;
+        //            crpY = e.Y;
+
+        //            Graphics g = pictureBox2.CreateGraphics();
+        //            g.DrawRectangle(crpPen, crpX, crpY, rectW, rectH);
+        //            g.Dispose();
+
+
+
+        //        }
+        //        else { pictureBox2.Refresh();
+        //            //set width and height for crop rectangle.
+        //            rectH = e.Y - crpY;
+        //            //rectW = e.X - crpX;
+        //            rectW = (rectH * 3) / 4;
+
+        //            Graphics g = pictureBox2.CreateGraphics();
+        //            g.DrawRectangle(crpPen, crpX, crpY, rectW, rectH);
+        //            g.Dispose();
+        //        }
+        //    }
+
+
+
+        //}
+
+        //protected override void OnMouseEnter(EventArgs e)
+        //{
+        //    base.OnMouseEnter(e);
+        //    Cursor = Cursors.Default;
+        //}
     }
 }

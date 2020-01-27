@@ -65,17 +65,17 @@ namespace JoinstarCard
 
         private void button2_Click(object sender, EventArgs e)
         {
-            NewCard newCard = new NewCard();
-            newCard.CardNo = label6.Text;
-            newCard.Name = textBox1.Text;
-            newCard.Phone=textBox2.Text ;
-            newCard.Email= textBox3.Text;
-            newCard.IsAgree = checkBox1.Checked;
-            newCard.MemberImage=ImageToByteArray(pictureBox1.Image);
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(newCard);
-            Console.WriteLine(json);
-            Console.ReadLine();
-            MessageBox.Show("Json Convert Done! See into Console");
+            //NewCard newCard = new NewCard();
+            //newCard.CardNo = label6.Text;
+            //newCard.Name = textBox1.Text;
+            //newCard.Phone=textBox2.Text ;
+            //newCard.Email= textBox3.Text;
+            //newCard.IsAgree = checkBox1.Checked;
+            //newCard.MemberImage=ImageToByteArray(pictureBox1.Image);
+            //var json = Newtonsoft.Json.JsonConvert.SerializeObject(newCard);
+            //Console.WriteLine(json);
+            //Console.ReadLine();
+            //MessageBox.Show("Json Convert Done! See into Console");
         }
         public static byte[] ImageToByteArray(Image x)
         {

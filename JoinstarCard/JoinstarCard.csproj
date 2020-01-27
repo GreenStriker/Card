@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A91ED4B7-1451-46DB-B60C-09D3C9C1361E}</ProjectGuid>
+    <ProjectGuid>{951C4004-E8E7-436C-8995-22F3E50B3134}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>JoinstarCard</RootNamespace>
-    <AssemblyName>JoinstarCard</AssemblyName>
+    <RootNamespace>CroppableImageBox</RootNamespace>
+    <AssemblyName>CroppableImageBox</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -42,15 +41,8 @@
     <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
       <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,9 +52,6 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WebApiContrib.Formatting.JavaScriptSerializer, Version=0.9.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WebApiContrib.Formatting.JavaScriptSerializer.0.9.4.0\lib\net40\WebApiContrib.Formatting.JavaScriptSerializer.dll</HintPath>
-    </Reference>
     <Reference Include="zxing, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
       <HintPath>..\packages\ZXing.Net.0.16.5\lib\net461\zxing.dll</HintPath>
     </Reference>
@@ -71,6 +60,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaptureImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CaptureImageForm.Designer.cs">
+      <DependentUpon>CaptureImageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CroppablePictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CroppablePictureBox.Designer.cs">
+      <DependentUpon>CroppablePictureBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="LookupCardForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,12 +97,8 @@
     <Compile Include="NewCardForm.Designer.cs">
       <DependentUpon>NewCardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CaptureImageForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CaptureImageForm.Designer.cs">
-      <DependentUpon>CaptureImageForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadQRForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,8 +111,12 @@
     <Compile Include="UpdateCardForm.Designer.cs">
       <DependentUpon>UpdateCardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CaptureImageForm.resx">
+      <DependentUpon>CaptureImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LookupCardForm.resx">
       <DependentUpon>LookupCardForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,15 +125,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewCardForm.resx">
       <DependentUpon>NewCardForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CaptureImageForm.resx">
-      <DependentUpon>CaptureImageForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReadQRForm.resx">
-      <DependentUpon>ReadQRForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateCardForm.resx">
-      <DependentUpon>UpdateCardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -137,6 +135,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReadQRForm.resx">
+      <DependentUpon>ReadQRForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateCardForm.resx">
+      <DependentUpon>UpdateCardForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
